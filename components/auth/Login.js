@@ -62,10 +62,10 @@ export function Login({onChange, onSubmit}) {
                             margin="normal"
                             required="required"
                             fullWidth="fullWidth"
-                            id="userid"
+                            id="username"
                             label="사용자 아이디"
-                            name="userid"
-                            autoComplete="userid"
+                            name="username"
+                            autoComplete="username"
                             autoFocus="autoFocus"
                             onChange={onChange}/>
                         <TextField

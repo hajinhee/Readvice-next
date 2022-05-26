@@ -23,9 +23,9 @@ const HomeIcon = createSvgIcon(
 
 const basicSettings = {
     subTitles: [
-        '카운터', '계산기', 'BMI', '게시판'
+        '카운터','게시판', '마이페이지'
     ],
-    urls: ["/basic/counter", "/basic/calc", "/basic/bmi", '/board/list']
+    urls: ["/common/counter", '/board/addboard']
 };
 
 export function Nav() {
@@ -79,10 +79,10 @@ export function Nav() {
                 subTitles: [
                     "프로필", "정보수정", "회원탈퇴"
                 ],
-                urls: ["/user/profile", "/user/modifyUser", "/auth/delUser"]
+                urls: ["/auth/profile", "/user/modifyUser", "/auth/delUser"]
             })
             setImageInfos(
-                {imageUrl: 'https://www.w3schools.com/howto/img_avatar.png', imageTitle: 'users'}
+                {imageUrl: 'https://www.w3schools.com/howto/img_avatar.png', imageTitle: 'auth'}
             )
         }
     }, [loginUser && loginUser.name])

@@ -12,7 +12,7 @@ import axios from 'axios'
 import { createBrowserHistory } from 'history'
 
 
-const SERVER = 'http://127.0.0.1:5000'
+const SERVER = 'http://127.0.0.1:8080'
 const headers = {
     "Content-Type": "application/json",
     Authorization: "JWT fefege...",
@@ -47,19 +47,21 @@ export function* loginSaga() {
 function* signin(action) {
     try {
         const response = yield call(loginAPI, action.payload)
-        const result = response
-            .data
-            console.log(" 로그인 서버다녀옴: " + JSON.stringify(result))
-        yield put({type: LOGIN_SUCCESS, payload: result})
-        yield put({type: SAVE_TOKEN, payload: result.token})
-        
+        const result = response.data
+        if(result.token !== "FAILURE"){
+            console.log(" 로그인 성공: " + JSON.stringify(result))
+            yield put({type: LOGIN_SUCCESS, payload: result})
+            yield put({type: SAVE_TOKEN, payload: result.token})
+        }else{
+            console.log(" 로그인 실패: " + JSON.stringify(result))
+        }
     } catch (error) {
         yield put({type: LOGIN_FAILURE, payload: error.message})
     }
 }
 //API => 라우터 역할을 한다. 
 const loginAPI = payload => axios.post(
-    `${SERVER}/user/login`,
+    `${SERVER}/users/login`,
     payload,
     {headers}
 )
@@ -78,7 +80,7 @@ function* logout(){
     }
 }
 const logoutAPI = () => axios.get(
-    `${SERVER}/user/logout`,
+    `${SERVER}/users/logout`,
     {},
     {headers}
 )
