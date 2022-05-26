@@ -48,7 +48,7 @@ function* signin(action) {
     try {
         const response = yield call(loginAPI, action.payload)
         const result = response.data
-        if(result.token !== "FAILURE"){
+        if(result.token !== "FAILURE" && result.token !== null){
             console.log(" 로그인 성공: " + JSON.stringify(result))
             yield put({type: LOGIN_SUCCESS, payload: result})
             yield put({type: SAVE_TOKEN, payload: result.token})
